@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PurpleTested PRATAS | Valentine's VIP Security</title>
+    <style>
+        :root {
+            --deep-purple: #2E004F;
+            --vibrant-pink: #E600FF;
+            --glow-pink: rgba(230, 0, 255, 0.5);
+            --text-light: #FFFFFF;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: radial-gradient(circle at center, var(--deep-purple) 0%, #1a002f 100%);
+            color: var(--text-light);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            overflow-x: hidden;
+        }
+
+        .bulb-container {
+            position: absolute;
+            top: -60px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 2;
+            width: 100px;
+        }
+        
+        .bulb-ornament {
+            width: 100%;
+            height: auto;
+            filter: drop-shadow(0 0 15px var(--vibrant-pink));
+        }
+
+        .spotlight {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 600px;
+            height: 80vh;
+            background: linear-gradient(to bottom, var(--glow-pink) 0%, transparent 100%);
+            clip-path: polygon(50% 0%, 100% 100%, 0% 100%);
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .container {
+            background: rgba(46, 0, 79, 0.6);
+            padding: 3rem 2rem;
+            border-radius: 20px;
+            box-shadow: 0 0 50px var(--glow-pink);
+            max-width: 500px;
+            width: 90%;
+            text-align: center;
+            position: relative;
+            border: 2px solid var(--vibrant-pink);
+            margin-top: 60px;
+            z-index: 1;
+        }
+
+        h1 {
+            color: var(--vibrant-pink);
+            font-family: 'Brush Script MT', cursive;
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            text-shadow: 0 0 10px var(--vibrant-pink);
+            line-height: 1.2;
+        }
+        
+        h1 span {
+            display: block;
+            font-size: 2.2rem;
+        }
+
+        p.subtitle {
+            font-size: 1rem;
+            color: #FFC0FF;
+            margin-bottom: 2.5rem;
+            font-style: italic;
+        }
+
+        .challenges-grid {
+            display: grid;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .challenge-card {
+            padding: 1rem;
+            border: 2px solid var(--vibrant-pink);
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            text-align: left;
+            background: rgba(230, 0, 255, 0.1);
+        }
+
+        .challenge-card:hover {
+            background: rgba(230, 0, 255, 0.2);
+            box-shadow: 0 0 15px var(--vibrant-pink);
+        }
+
+        .challenge-card.selected {
+            background: var(--vibrant-pink);
+            border-color: var(--text-light);
+            transform: scale(1.02);
+        }
+
+        .checkbox-custom {
+            width: 20px;
+            height: 20px;
+            border: 2px solid var(--vibrant-pink);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .selected .checkbox-custom {
+            background: var(--text-light);
+            border-color: var(--text-light);
+        }
+
+        button.match-btn {
+            background: var(--vibrant-pink);
+            color: var(--text-light);
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+            width: 100%;
+            box-shadow: 0 0 20px var(--glow-pink);
+        }
+
+        button.match-btn:hover {
+            background: #ff40ff;
+            box-shadow: 0 0 30px var(--vibrant-pink);
+        }
+
+        #result-screen {
+            display: none;
+        }
+
+        .match-badge {
+            color: var(--vibrant-pink);
+            font-weight: bold;
+            letter-spacing: 2px;
+            margin-bottom: 1rem;
+            display: block;
+            font-size: 1.2rem;
+            text-shadow: 0 0 10px var(--vibrant-pink);
+        }
+
+        .result-text {
+            font-style: italic;
+            margin: 1.5rem 0;
+            line-height: 1.6;
+            color: #FFC0FF;
+        }
+
+        .footer-logo {
+            margin-top: 2rem;
+            font-size: 1.5rem;
+            opacity: 0.9;
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+        
+        .footer-logo span {
+            display: block;
+            font-size: 0.9rem;
+            letter-spacing: 3px;
+            margin-top: 5px;
+        }
+
+        /* For the image bulb */
+        .bulb-svg {
+            width: 100%;
+            height: auto;
+        }
+    </style>
+</head>
+<body>
+
+<div class="spotlight"></div>
+
+<div class="container" id="main-container">
+    <div class="bulb-container">
+        <svg class="bulb-svg" viewBox="0 0 100 150" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M50 80 C 70 80, 85 95, 85 115 C 85 135, 70 150, 50 150 C 30 150, 15 135, 15 115 C 15 95, 30 80, 50 80" fill="#FFFFFF"/>
+            <path d="M30 0 H 70 V 20 H 30 Z" fill="#333"/>
+            <path d="M20 20 H 80 L 85 80 H 15 L 20 20 Z" fill="#222" stroke="#555" stroke-width="2"/>
+            <circle cx="30" cy="30" r="3" fill="#999"/> <circle cx="50" cy="30" r="3" fill="#999"/> <circle cx="70" cy="30" r="3" fill="#999"/>
+            <circle cx="30" cy="50" r="3" fill="#999"/> <circle cx="50" cy="50" r="3" fill="#999"/> <circle cx="70" cy="50" r="3" fill="#999"/>
+            <circle cx="30" cy="70" r="3" fill="#999"/> <circle cx="50" cy="70" r="3" fill="#999"/> <circle cx="70" cy="70" r="3" fill="#999"/>
+        </svg>
+    </div>
+
+    <div id="selection-screen">
+        <h1>BE VIP EVEN <br><span>WITH NO WRISTBAND.</span></h1>
+        <p class="subtitle">"Love is being safe." Select the cybersecurity heartaches you want to leave behind in 2026.</p>
+        
+        <div class="challenges-grid">
+            <div class="challenge-card" onclick="toggleSelection(this)">
+                <div class="checkbox-custom"></div>
+                <span>Hard to find the "Right" talent?</span>
+            </div>
+            <div class="challenge-card" onclick="toggleSelection(this)">
+                <div class="checkbox-custom"></div>
+                <span>Employees need better training?</span>
+            </div>
+            <div class="challenge-card" onclick="toggleSelection(this)">
+                <div class="checkbox-custom"></div>
+                <span>Afraid of unexpected attacks?</span>
+            </div>
+            <div class="challenge-card" onclick="toggleSelection(this)">
+                <div class="checkbox-custom"></div>
+                <span>QA slows down your release?</span>
+            </div>
+        </div>
+
+        <button class="match-btn" onclick="showResult()">Find My VIP Match</button>
+    </div>
+
+    <div id="result-screen">
+        <span class="match-badge">IT'S A VIP MATCH!</span>
+        <h1 style="font-size: 2rem;">PurpleTested Framework</h1>
+        <p class="result-text">
+            "PurpleSynapz is about love expressed through technology. Keeping you safe is our priority. Security is the continuous, evolving process to ensure your peace of mind."
+        </p>
+        <div style="background: rgba(230, 0, 255, 0.1); padding: 1rem; border-radius: 10px; margin-bottom: 1.5rem; border: 1px solid var(--vibrant-pink);">
+            <strong>Our Vow to You:</strong><br>
+            Continuous testing, elite candidate vetting, and a shield that never sleeps.
+        </div>
+        <button class="match-btn" onclick="window.location.reload()">Talk to Us. We are Listening.</button>
+    </div>
+
+    <div class="footer-logo">
+        PurpleTested <br><span>PRATAS</span>
+    </div>
+</div>
+
+<script>
+    function toggleSelection(element) {
+        element.classList.toggle('selected');
+    }
+
+    function showResult() {
+        const selections = document.querySelectorAll('.selected');
+        if (selections.length === 0) {
+            alert("Please select at least one challenge to find your match!");
+            return;
+        }
+        
+        document.getElementById('selection-screen').style.opacity = '0';
+        setTimeout(() => {
+            document.getElementById('selection-screen').style.display = 'none';
+            document.getElementById('result-screen').style.display = 'block';
+            document.getElementById('main-container').style.borderColor = '#E600FF';
+        }, 300);
+    }
+</script>
+
+</body>
+</html>
